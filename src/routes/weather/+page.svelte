@@ -6,34 +6,21 @@
   let city: string = 'Washington,DC,USA';
   let todayWeather: any = null;
   let isLoading: boolean = false;
+  let location: string = ''; 
 
   async function fetchWeather() {
-    isLoading = true; // Mostrar el indicador de carga
-    const options = {
-      method: 'GET',
-      url: 'https://visual-crossing-weather.p.rapidapi.com/forecast',
-      params: {
-        aggregateHours: '24',
-        location: city,
-        contentType: 'json',
-        unitGroup: 'us',
-        shortColumnNames: '0'
-      },
-      headers: {
-        'X-RapidAPI-Key': 'faa271f72fmshfe9df8831015cddp121d98jsn308069e51507',
-        'X-RapidAPI-Host': 'visual-crossing-weather.p.rapidapi.com'
-      }
-    };
-
+    isLoading = true;
     try {
-      const response = await axios.request(options);
+      const response = await axios.get('/api', {
+        params: { city }
+      });
       weatherData = response.data.locations[city].values;
-      city = response.data.locations[city].name;
-      todayWeather = weatherData[0]; // Obtener el pronóstico del día de hoy
+      location = response.data.locations[city].address; 
+      todayWeather = weatherData[0];
     } catch (error) {
       console.error(error);
     } finally {
-      isLoading = false; // Ocultar el indicador de carga
+      isLoading = false;
     }
   }
 
@@ -48,7 +35,7 @@
   }
 </script>
 
-<h1 class="text-3xl font-semibold text-center my-6">Weather Forecast for {city}</h1>
+<h1 class="text-3xl font-semibold text-center my-6">Weather Forecast for {location}</h1> <!-- Mostrar la dirección en lugar de la ciudad -->
 
 <div class="flex max-w-xs mx-auto mb-6">
   <input type="text" placeholder="Enter city name" class="border border-gray-400 rounded-l-lg px-4 py-2 w-full" bind:value={city}>
@@ -58,8 +45,7 @@
 {#if isLoading}
   <div class="flex justify-center items-center my-6">
     <span class="visually-hidden">Loading...</span>
-    <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-    </div>
+    <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status"></div>
   </div>
 {:else}
   {#if todayWeather}
