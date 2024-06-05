@@ -35,7 +35,7 @@
   }
 </script>
 
-<h1 class="text-3xl font-semibold text-center my-6">Weather Forecast for {location}</h1> <!-- Mostrar la dirección en lugar de la ciudad -->
+<h1 class="text-3xl font-semibold text-center my-6">Weather Forecast for {location}</h1> 
 
 <div class="flex max-w-xs mx-auto mb-6">
   <input type="text" placeholder="Enter city name" class="border border-gray-400 rounded-l-lg px-4 py-2 w-full" bind:value={city}>
