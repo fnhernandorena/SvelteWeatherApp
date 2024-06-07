@@ -3,18 +3,20 @@
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="Weather App" />
 </svelte:head>
 
 <section>
-	<h1>
+	<h1 class="my-48">
 
-		to your new<br />SvelteKit app
+		Welcome to Weather App
 	</h1>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
+	<p class="text-center">
+		It was developed with SvelteKit, Tailwind and Rapid API.
+		<br />
+It's open source, you can see the repo in my portfolio!
+</p>
 
 </section>
 

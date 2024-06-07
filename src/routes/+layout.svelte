@@ -6,11 +6,11 @@
 <div class="w-full">
 	<Header />
 
-	<main>
+	<main class="p-2">
 		<slot />
 	</main>
 
-	<footer>
+	<footer class="flex justify-center">
 		<a href="https://oficial-site-next-app.vercel.app/">Developer site</a>
 	</footer>
 </div>
